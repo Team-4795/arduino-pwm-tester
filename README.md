@@ -2,30 +2,31 @@
 A servo-PWM generator with keypad, LCD, and potentiometers using arduino
 
 # Arduino hardware hookup
+Pin numbers are for the ATmega328
 
 ##PWM output:
--  pin 15 PB1/OC1A - arduino 9 -  pwm output 1
--  pin 16 PB2/OC1B - arduino 10 - pwm output 2
+-  pin 15 PB1/OC1A - (arduino 9) -  pwm output 1
+-  pin 16 PB2/OC1B - (arduino 10) - pwm output 2
 
 ##other digital outputs:
--  PD2  arduino 2   - software serial to LCD display
--  PB5  arduino 13  - LED connected on most Arduino boards.  blinks heartbeat
+-  pin 4  PD2  (arduino 2)   - software serial to LCD display
+-  pin 19 PB5  (arduino 13)  - LED connected on most Arduino boards.  blinks heartbeat
 
 ##analog inputs:
--  pin 23 PC0/ADC0 (analog 0) - potentiometer for pwm 1.  Leftmost slider pot.
--  pin 24 PC1/ADC1 (analog 1) - potentiometer for pwm 2.  Rightmost slider pot.
--  pin 26 PC2/ADC2 (analog 2 - additional analog input displayed on LCD for sensor testing
+-  pin 23 PC0/ADC0 (arduino analog 0) - potentiometer for pwm 1.  Leftmost slider pot.
+-  pin 24 PC1/ADC1 (arduino analog 1) - potentiometer for pwm 2.  Rightmost slider pot.
+-  pin 26 PC2/ADC2 (arduino analog 2 - additional analog input displayed on LCD for sensor testing
 
 # keypad: 5 keys on port D.
 Each key is a pushbutton switch that connects to ground when pressed.
 optional series diodes could allow multiplexing, but we don't take advantage
 of that.
 
-- pin 13 PD7    "Up"   key
-- pin 12 PD6    "Down" 
-- pin 11 PD5    "Enter"
-- pin 6  PD4    "Right"
-- pin 5  PD3    "Left"
+- pin 13 PD7  (arduino 7)  "Up"   key
+- pin 12 PD6  (arduino 6)  "Down" 
+- pin 11 PD5  (arduino 5)  "Enter"
+- pin 6  PD4  (arduino 4)  "Right"
+- pin 5  PD3  (arduino 3)  "Left"
 
 
 # Operation:

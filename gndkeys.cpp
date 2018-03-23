@@ -1,5 +1,4 @@
-#include "WProgram.h"
-#include "pins_arduino.h"
+#include <Arduino.h>
 #include <NewSoftSerial.h>
 #include "gndkeys.h"
 

@@ -1,13 +1,12 @@
-//#include "WProgram.h"
-#include "wiring_private.h"
-#include "pins_arduino.h"
-#include <NewSoftSerial.h>
+#include <Arduino.h>
+#include <SoftwareSerial.h>
+#include <HardwareSerial.h>
 #include <gndkeys.h>
 #include <lcdvar.h>
 
 static char signon_msg[] = "sgt servotest 12";
 int blink;
-NewSoftSerial lcdSerial(3, 2);  // rxpin, txpin
+SoftwareSerial lcdSerial(3, 2);  // rxpin, txpin
 Keyboard pdkeys;
 void handle_key(unsigned char);
 

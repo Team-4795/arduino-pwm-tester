@@ -2,7 +2,7 @@
  * lcdvar - display and change config variables, using an HD44780 LCD display 
  * and simple keypad.
  */
-#include <NewSoftSerial.h>
+#include <SoftwareSerial.h>
 
 
 #define LCDVAR_INT	0

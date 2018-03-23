@@ -7,7 +7,7 @@
 #include "gndkeys.h"
 #include "lcdvar.h"
 
-extern NewSoftSerial lcdSerial;
+extern SoftwareSerial lcdSerial;
 
 //#define LCDV_DEFPOS 0xd4+8
 

@@ -50,21 +50,29 @@ EXTRA_OBJS=gndkeys.o lcdvar.o
 ############################################################################
 # Below here nothing should be changed...
 
-ARDUINO = $(INSTALL_DIR)/hardware/arduino/cores/arduino
+ARDUINO = $(INSTALL_DIR)/hardware/arduino/avr/cores/arduino
+# TODO generalize this
+ARDUINO2 = $(INSTALL_DIR)/hardware/arduino/avr/libraries/SoftwareSerial
+
 AVR_TOOLS_PATH = /usr/bin
 AVRDUDE_PATH = $(INSTALL_DIR)/hardware/tools
-LIBCSRC =  $(ARDUINO)/pins_arduino.c $(ARDUINO)/wiring.c \
+LIBCSRC =   $(ARDUINO)/wiring.c \
 	$(ARDUINO)/wiring_analog.c $(ARDUINO)/wiring_digital.c \
 	$(ARDUINO)/wiring_pulse.c \
-	$(ARDUINO)/wiring_shift.c $(ARDUINO)/WInterrupts.c
+	$(ARDUINO)/wiring_shift.c $(ARDUINO)/WInterrupts.c \
+	$(ARDUINO)/hooks.c 
 
 ARDLIB=$(INSTALL_DIR)/libraries
 
-LIBCXXSRC = $(ARDUINO)/HardwareSerial.cpp $(ARDUINO)/WMath.cpp \
-	$(ARDUINO)/Print.cpp \
-	NewSoftSerial.cpp
+LIBCXXSRC = $(ARDUINO)/HardwareSerial.cpp \
+	$(ARDUINO)/HardwareSerial0.cpp \
+	$(ARDUINO)/WMath.cpp \
+	$(ARDUINO)/Print.cpp 
+
+LIBCXXSRC2=$(ARDUINO2)/SoftwareSerial.cpp
+
 FORMAT = ihex
-VPATH=$(ARDUINO)
+VPATH=$(ARDUINO) $(ARDUINO2)
 
 
 # Name of this Makefile (used for "make depend").
@@ -82,7 +90,7 @@ CDEFS = -DF_CPU=$(F_CPU)
 CXXDEFS = -DF_CPU=$(F_CPU)
 
 # Place -I options here
-CINCS = -I$(ARDUINO) -I$(ARDUINO)/../../variants/standard
+CINCS = -I$(ARDUINO) -I$(ARDUINO2) -I$(ARDUINO)/../../variants/standard
 CXXINCS = 
 
 # Compiler flag to set the C Standard level.
@@ -126,7 +134,7 @@ REMOVE = rm -f
 MV = mv -f
 
 # Define all object files.
-LIBOBJ = $(addprefix lib/, $(notdir $(LIBCSRC:.c=.o) $(LIBCXXSRC:.cpp=.o) $(LIBASRC:.S=.o)))
+LIBOBJ = $(addprefix lib/, $(notdir $(LIBCSRC:.c=.o) $(LIBCXXSRC:.cpp=.o) $(LIBCXXSRC2:.cpp=.o) $(LIBASRC:.S=.o)))
 
 # Define all listing files.
 LST = $(ASRC:.S=.lst) $(CXXSRC:.cpp=.lst) $(SRC:.c=.lst)
